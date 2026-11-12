@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Arinagram // Encrypted</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Анимированное свечение под стеклом -->
+    <div class="ambient-bg">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+    <div class="ambient-grid"></div>
+
+    <!-- ЭКРАН ВХОДА -->
+    <div id="auth-screen">
+        <div class="auth-card">
+            <div class="brand-logo">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                    <path d="M2 17l10 5 10-5"/>
+                    <path d="M2 12l10 5 10-5"/>
+                </svg>
+            </div>
+            <h1 class="auth-title">Arinagram</h1>
+            <p class="auth-subtitle">аррррррррина</p>
+
+            <div class="input-group">
+                <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"/>
+                </svg>
+                <input type="text" id="username-input" class="glass-input" placeholder="@username" autocomplete="off">
+            </div>
+
+            <div class="input-group">
+                <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+                <input type="password" id="password-input" class="glass-input" placeholder="Ключ доступа (пароль)">
+            </div>
+
+            <button class="btn-primary" onclick="login()">Войти в сеть</button>
+        </div>
+    </div>
+
+    <!-- ОСНОВНОЙ ИНТЕРФЕЙС -->
+    <div id="app-layout">
+        <!-- Список контактов -->
+        <aside id="sidebar">
+            <div class="sidebar-header">
+                <div class="brand-pill">
+                    <span class="pulse-dot"></span>
+                    Аринаграмм
+                </div>
+                <div class="my-tag" id="my-user-tag" onclick="logout()" title="Нажми, чтобы выйти">@user</div>
+            </div>
+
+            <div class="search-container">
+                <div class="search-box">
+                    <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>
+                    <input type="text" id="search-input" placeholder="Найти или добавить @username..." autocomplete="off">
+                </div>
+            </div>
+
+            <div class="chat-list" id="chat-list"></div>
+        </aside>
+
+        <!-- Окно переписки -->
+        <main id="chat-window">
+            <header class="chat-header">
+                <button class="icon-btn" id="back-btn" onclick="closeChat()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
+                    </svg>
+                </button>
+                <div class="avatar crimson-ring" id="active-avatar" style="width: 40px; height: 40px; border-radius: 13px; font-size: 14px;">❤️</div>
+                <div class="header-info">
+                    <h3 id="active-chat-name">@любимая❤️</h3>
+                    <div class="header-status">в сети • E2EE</div>
+                </div>
+            </header>
+
+            <div class="messages-viewport" id="messages-container"></div>
+
+            <div class="composer-bar">
+                <div class="composer-glass">
+                    <input type="text" id="msg-input" placeholder="Написать сообщение..." autocomplete="off">
+                    <button class="send-btn" onclick="sendMessage()">
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Подключаем логику -->
+    <script src="app.js"></script>
+</body>
+</html>
+  
